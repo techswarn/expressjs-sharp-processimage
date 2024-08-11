@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: imagesvc
+  name: imagesvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imagesvc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: imagesvc
+    spec:
+      runtimeClassName: gvisor
+      containers:
+        - image: swarntech/imagesvc:latest
+          name: imagesvc
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "858993459"
+              cpu: "200m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
